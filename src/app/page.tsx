@@ -6,6 +6,7 @@ import Carosal from "./_component/Carosal";
 import TrandingProduct from "./_component/TrandingProduct";
 import Services from "./_component/Services";
 import News from "./_component/News";
+import Footer from "./_component/Footer";
 
 const page = () => {
   return (
@@ -17,8 +18,7 @@ const page = () => {
       <TrandingProduct />
       <Services />
       <News />
-      <Hero />
-      <Hero />
+      <Footer />
     </div>
   );
 };

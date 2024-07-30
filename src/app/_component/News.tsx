@@ -87,7 +87,7 @@ const News = () => {
       {/*youtube video */}
       <div className="shadow my-4 py-6">
         <div className="font-bold m-2 text-center text-2xl">Farming Idea</div>
-        <div className="grid gap-2 grid-cols-4">
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           {youtubeVideoId.map((items) => (
             <div className="m-1   rounded-md ">
               <iframe
