@@ -7,6 +7,7 @@ import TrandingProduct from "./_component/TrandingProduct";
 import Services from "./_component/Services";
 import News from "./_component/News";
 import Footer from "./_component/Footer";
+import TrustedBy from "./_component/TrustedBy";
 
 const page = () => {
   return (
@@ -18,6 +19,7 @@ const page = () => {
       <TrandingProduct />
       <Services />
       <News />
+      <TrustedBy />
       <Footer />
     </div>
   );
