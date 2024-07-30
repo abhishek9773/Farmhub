@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <div className="flex items-center justify-center flex-col bg-amber-400 my-1 shadow-md w-screen md:w-[100%] h-screen md:h-[100%] md:py-10 ">
       <div className="flex items-center justify-center flex-col ">
-        <div className=" flex items-center border shadow-sm  p-4 bg-amber-100 text-amber-700 rounded-full uppercase sm:text-center text-center">
+        <div className=" flex items-center border shadow-sm  p-4 bg-amber-200 text-amber-700 rounded-full uppercase sm:text-center text-center">
           <Medal className="h-6 w-6 mr-2" />
           No 1 farming Servie provier
         </div>

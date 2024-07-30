@@ -83,26 +83,6 @@ const News = () => {
           <div className="bg-gray-400 h-[300px] rounded shadow"></div>
         ))}
       </div>
-
-      {/*youtube video */}
-      <div className="shadow my-4 py-6">
-        <div className="font-bold m-2 text-center text-2xl">Farming Idea</div>
-        <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
-          {youtubeVideoId.map((items) => (
-            <div className="m-1   rounded-md ">
-              <iframe
-                className="w-full h-60"
-                src={`https://www.youtube.com/embed/${items.yid}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            </div>
-          ))}
-        </div>
-      </div>
       {/* top channel on youtube */}
       <div className="my-2 py-2 shadow ">
         <p className="text-center font-semibold text-2xl">
@@ -151,6 +131,26 @@ const News = () => {
                   </div>
                 </Link>
               ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/*youtube video */}
+      <div className="shadow my-4 py-6">
+        <div className="font-bold m-2 text-center text-2xl">Farming Idea</div>
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
+          {youtubeVideoId.map((items) => (
+            <div className="m-1   rounded-md ">
+              <iframe
+                className="w-full h-60"
+                src={`https://www.youtube.com/embed/${items.yid}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              ></iframe>
             </div>
           ))}
         </div>

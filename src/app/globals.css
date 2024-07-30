@@ -78,4 +78,8 @@
       transform: translateX(-100%);
     }
   }
+  .container-x {
+  max-width: 100%;
+  overflow-x: hidden; /* Temporarily hide horizontal overflow */
+}
 }
