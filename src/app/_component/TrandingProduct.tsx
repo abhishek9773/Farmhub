@@ -4,7 +4,9 @@ const TrandingProduct = () => {
   return (
     <div className="py-2">
       <div>
-        <p className="font-bold text-2xl ">Tranding Product of This Weak </p>
+        <p className="font-bold text-2xl text-center">
+          Tranding Product of This Weak{" "}
+        </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-1 md:gap-3 my-2 ">
         {[1, 1, 1, 1, 1, 1].map(() => (
