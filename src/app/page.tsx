@@ -9,11 +9,21 @@ import News from "./_component/News";
 import Footer from "./_component/Footer";
 import TrustedBy from "./_component/TrustedBy";
 import { Dropdown } from "./_component/_utils/DropDown";
+import supabaseLogin from "@/utils/supabase/login-user";
+import { AuthError, User } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-const page = () => {
+const page = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+  if (error && !data?.user) {
+    redirect("/login");
+  }
+  console.log(data.user);
   return (
     <div className="container-x overflow-x-hidden">
-      <Navbar />
+      <Navbar auth={data} />
       <Carosal />
       <Hero />
       <TrandingProduct />
