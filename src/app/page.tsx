@@ -9,8 +9,11 @@ import News from "./_component/News";
 import Footer from "./_component/Footer";
 import TrustedBy from "./_component/TrustedBy";
 import { Dropdown } from "./_component/_utils/DropDown";
+import { AuthError, User } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-const page = () => {
+const page = async () => {
   return (
     <div className="container-x overflow-x-hidden">
       <Navbar />
