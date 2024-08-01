@@ -1,7 +1,8 @@
 import { type EmailOtpType } from "@supabase/supabase-js";
-import { type NextRequest, NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
 
 import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -16,13 +17,12 @@ export async function GET(request: NextRequest) {
       type,
       token_hash,
     });
-
     if (!error) {
-      // Redirect user to the specified URL or the root of the app
-      return NextResponse.redirect(next);
+      // redirect user to specified redirect URL or root of app
+      redirect(next);
     }
   }
 
-  // Redirect the user to an error page with some instructions
-  return NextResponse.redirect("/error");
+  // redirect the user to an error page with some instructions
+  redirect("/error");
 }
