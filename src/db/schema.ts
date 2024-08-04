@@ -36,6 +36,12 @@ export const notificationTypeEnum = pgEnum("notificationType", [
   "review",
   "system",
 ]);
+
+export const rentalStatus = pgEnum("status", [
+  "pending",
+  "approved",
+  "rejected",
+]);
 export const Users = pgTable("users", {
   id: uuid("id").primaryKey(),
   firstName: varchar("first_name", { length: 100 }).notNull(),
@@ -197,10 +203,12 @@ export const Notifications = pgTable("notifications", {
 
 export const ServiceAvailability = pgTable("serviceAvailability", {
   id: uuid("id").primaryKey(),
-  serviceId: uuid("service_id").references(() => Services.id),
-  date: timestamp("date", { withTimezone: true, mode: "date" }).default(
-    sql`now()`
-  ),
+  serviceId: uuid("service_id")
+    .references(() => Services.id)
+    .notNull(),
+  date: timestamp("date", { withTimezone: true, mode: "date" })
+    .default(sql`now()`)
+    .notNull(),
   available: boolean("available").default(false),
   createdAt: timestamp("created_at", {
     withTimezone: true,
@@ -210,4 +218,36 @@ export const ServiceAvailability = pgTable("serviceAvailability", {
     withTimezone: true,
     mode: "string",
   }).default(sql`now()`),
+});
+
+//For keyword-based search)
+export const ServiceTags = pgTable("serviceTags", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id")
+    .references(() => Services.id)
+    .notNull(),
+  tag: varchar("tag", { length: 100 }),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+});
+
+export const RentalRequests = pgTable("rentalRequests", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id").references(() => Services.id),
+  renterId: uuid("renter_id").references(() => Users.id),
+  requestDate: timestamp("request_date", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  status: rentalStatus("status").notNull(),
+  responseDate: timestamp("response_date"),
+
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }), // Set to current timestamp by default
+  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
 });
