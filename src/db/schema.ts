@@ -30,7 +30,12 @@ export const paymentMethod = pgEnum("payment_method", [
   "paypal",
   "crypto",
 ]);
-
+export const notificationTypeEnum = pgEnum("notificationType", [
+  "rental",
+  "transaction",
+  "review",
+  "system",
+]);
 export const Users = pgTable("users", {
   id: uuid("id").primaryKey(),
   firstName: varchar("first_name", { length: 100 }).notNull(),
@@ -142,4 +147,20 @@ export const Transactions = pgTable("transaction", {
   paymentMethod: paymentMethod("payment_method"),
   createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }),
   updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
+});
+
+export const Reviews = pgTable("reviews", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id").references(() => Services.id),
+  userId: uuid("user_id").references(() => Users.id),
+  rating: integer("rating").notNull(),
+  comment: text("comment"),
+  created_at: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updated_at: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
 });
