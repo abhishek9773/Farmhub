@@ -164,3 +164,50 @@ export const Reviews = pgTable("reviews", {
     mode: "string",
   }).default(sql`now()`),
 });
+
+export const ServiceImages = pgTable("serviceImages", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id").references(() => Services.id),
+  imageUrl: text("image_url"),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+});
+
+export const Notifications = pgTable("notifications", {
+  id: uuid("id").primaryKey(),
+  userId: uuid("user_id").references(() => Users.id),
+  messgae: text("message"),
+  type: notificationTypeEnum("type"),
+  isRead: boolean("is_read").default(false),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+});
+
+export const ServiceAvailability = pgTable("serviceAvailability", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id").references(() => Services.id),
+  date: timestamp("date", { withTimezone: true, mode: "date" }).default(
+    sql`now()`
+  ),
+  available: boolean("available").default(false),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+});
