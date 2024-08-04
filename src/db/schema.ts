@@ -1,5 +1,6 @@
 import { hash } from "crypto";
 import { sql } from "drizzle-orm";
+import { boolean } from "drizzle-orm/pg-core";
 import {
   decimal,
   geometry,
@@ -58,8 +59,14 @@ export const Address = pgTable("addresses", {
   state: varchar("state", { length: 100 }).notNull(),
   country: varchar("country", { length: 100 }).notNull(),
   postalCode: varchar("postal_code", { length: 20 }).notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }),
-  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
 });
 
 export const Services = pgTable("service", {
@@ -84,6 +91,31 @@ export const Categories = pgTable("categories", {
   id: uuid("id").primaryKey(),
   name: varchar("name", { length: 255 }),
   description: text("description"),
-  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
   updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
+});
+
+export const RentalPeriod = pgTable("rentalPeriod", {
+  id: uuid("id").primaryKey(),
+  serviceId: uuid("service_id").references(() => Services.id),
+  renterId: uuid("renter_id").references(() => Users.id),
+  startDate: timestamp("start_date", { withTimezone: true }).default(
+    sql`now()`
+  ),
+  endDate: timestamp("end_date", { withTimezone: true }).default(sql`now()`),
+  extended: boolean("extended").default(false),
+  extensionRequested: boolean("extension_requested").default(false),
+  extensionApproved: boolean("extension_approved").default(false),
+  extensionApprovedBy: boolean("extension_approved_by").default(false),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
+  updatedAt: timestamp("updated_at", {
+    withTimezone: true,
+    mode: "string",
+  }).default(sql`now()`),
 });
