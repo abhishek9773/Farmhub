@@ -1,6 +1,6 @@
 import { hash } from "crypto";
 import { sql } from "drizzle-orm";
-import { boolean } from "drizzle-orm/pg-core";
+import { boolean, integer } from "drizzle-orm/pg-core";
 import {
   decimal,
   geometry,
@@ -18,6 +18,17 @@ export const userRoleEnum = pgEnum("role", ["provider", "ranter", "admin"]);
 export const AvailabilityEnum = pgEnum("Availability", [
   "available",
   "unavailable",
+]);
+
+export const statusEnum = pgEnum("status", [
+  "pending",
+  "completed",
+  "canceled",
+]);
+export const paymentMethod = pgEnum("payment_method", [
+  "credit_card",
+  "paypal",
+  "crypto",
 ]);
 
 export const Users = pgTable("users", {
@@ -98,7 +109,7 @@ export const Categories = pgTable("categories", {
   updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
 });
 
-export const RentalPeriod = pgTable("rentalPeriod", {
+export const RentalPeriods = pgTable("rentalPeriods", {
   id: uuid("id").primaryKey(),
   serviceId: uuid("service_id").references(() => Services.id),
   renterId: uuid("renter_id").references(() => Users.id),
@@ -118,4 +129,17 @@ export const RentalPeriod = pgTable("rentalPeriod", {
     withTimezone: true,
     mode: "string",
   }).default(sql`now()`),
+});
+
+export const Transactions = pgTable("transaction", {
+  id: uuid("id").primaryKey(),
+  rentalPeriodId: uuid("rental_period_id")
+    .references(() => RentalPeriods.id)
+    .notNull(),
+  amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+  status: statusEnum("status"),
+  transationDate: timestamp("transation_date").default(sql`now()`),
+  paymentMethod: paymentMethod("payment_method"),
+  createdAt: timestamp("created_at", { withTimezone: true, mode: "string" }),
+  updatedAt: timestamp("updated_at", { withTimezone: true, mode: "string" }),
 });
