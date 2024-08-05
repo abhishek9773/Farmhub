@@ -55,9 +55,7 @@ export const Users = pgTable("users", {
     })
     .notNull(),
   role: userRoleEnum("role"),
-  profilePictureUrl: varchar("profile_pricture_url", { length: 255 }).default(
-    "null"
-  ),
+  profilePictureUrl: text("profile_pricture_url").default("null"),
   createdAt: timestamp("creatd_at", {
     withTimezone: true,
     mode: "string",
@@ -188,7 +186,7 @@ export const ServiceImages = pgTable("serviceImages", {
 export const Notifications = pgTable("notifications", {
   id: uuid("id").primaryKey(),
   userId: uuid("user_id").references(() => Users.id),
-  messgae: text("message"),
+  message: text("message"),
   type: notificationTypeEnum("type"),
   isRead: boolean("is_read").default(false),
   createdAt: timestamp("created_at", {
