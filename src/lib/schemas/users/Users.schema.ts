@@ -3,6 +3,7 @@ import { z } from "zod";
 const UserRoleEnum = z.enum(["provider", "ranter", "admin"]);
 
 export const UserSchema = z.object({
+  id: z.string().uuid(),
   firstName: z.string().max(100, "First name cannot exceed 100 characters"),
   lastName: z.string().max(100, "Last name cannot exceed 100 characters"),
   email: z

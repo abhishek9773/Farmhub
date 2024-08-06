@@ -1,9 +1,7 @@
-import { hash } from "crypto";
 import { sql } from "drizzle-orm";
 import { boolean, integer } from "drizzle-orm/pg-core";
 import {
   decimal,
-  geometry,
   pgEnum,
   pgTable,
   text,
@@ -12,6 +10,7 @@ import {
 } from "drizzle-orm/pg-core";
 import { varchar } from "drizzle-orm/pg-core";
 import { User } from "lucide-react";
+import { string } from "zod";
 export { pgTable } from "drizzle-orm/pg-core";
 
 export const userRoleEnum = pgEnum("role", ["provider", "ranter", "admin"]);
@@ -43,7 +42,7 @@ export const rentalStatus = pgEnum("status", [
   "rejected",
 ]);
 export const Users = pgTable("users", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
   firstName: varchar("first_name", { length: 100 }).notNull(),
   lastName: varchar("last_name", { length: 100 }).notNull(),
   email: varchar("email", { length: 100 }).unique(),
@@ -68,7 +67,7 @@ export const Users = pgTable("users", {
 });
 
 export const Address = pgTable("addresses", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   addressLine1: varchar("address_line1", {
     length: 255,
   }).notNull(),
@@ -90,7 +89,7 @@ export const Address = pgTable("addresses", {
 });
 
 export const Services = pgTable("service", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   userId: uuid("userId").references(() => Users.id, { onDelete: "cascade" }),
   title: varchar("title", { length: 255 }),
   description: text("description"),
@@ -99,7 +98,7 @@ export const Services = pgTable("service", {
     .references(() => Categories.id)
     .notNull(),
   availability: AvailabilityEnum("availability").notNull(),
-  location: geometry("location"),
+  location: text("location"),
   created_at: timestamp("created_at", { withTimezone: true, mode: "string" }),
   updated_at: timestamp("updated_at", {
     withTimezone: true,
@@ -108,7 +107,7 @@ export const Services = pgTable("service", {
 });
 
 export const Categories = pgTable("categories", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   name: varchar("name", { length: 255 }),
   description: text("description"),
   createdAt: timestamp("created_at", {
@@ -119,7 +118,7 @@ export const Categories = pgTable("categories", {
 });
 
 export const RentalPeriods = pgTable("rentalPeriods", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id").references(() => Services.id),
   renterId: uuid("renter_id").references(() => Users.id),
   startDate: timestamp("start_date", { withTimezone: true }).default(
@@ -141,7 +140,7 @@ export const RentalPeriods = pgTable("rentalPeriods", {
 });
 
 export const Transactions = pgTable("transaction", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   rentalPeriodId: uuid("rental_period_id")
     .references(() => RentalPeriods.id)
     .notNull(),
@@ -154,7 +153,7 @@ export const Transactions = pgTable("transaction", {
 });
 
 export const Reviews = pgTable("reviews", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id").references(() => Services.id),
   userId: uuid("user_id").references(() => Users.id),
   rating: integer("rating").notNull(),
@@ -170,7 +169,7 @@ export const Reviews = pgTable("reviews", {
 });
 
 export const ServiceImages = pgTable("serviceImages", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id").references(() => Services.id),
   imageUrl: text("image_url"),
   createdAt: timestamp("created_at", {
@@ -184,7 +183,7 @@ export const ServiceImages = pgTable("serviceImages", {
 });
 
 export const Notifications = pgTable("notifications", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   userId: uuid("user_id").references(() => Users.id),
   message: text("message"),
   type: notificationTypeEnum("type"),
@@ -200,7 +199,7 @@ export const Notifications = pgTable("notifications", {
 });
 
 export const ServiceAvailability = pgTable("serviceAvailability", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id")
     .references(() => Services.id)
     .notNull(),
@@ -220,7 +219,7 @@ export const ServiceAvailability = pgTable("serviceAvailability", {
 
 //For keyword-based search)
 export const ServiceTags = pgTable("serviceTags", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id")
     .references(() => Services.id)
     .notNull(),
@@ -236,7 +235,7 @@ export const ServiceTags = pgTable("serviceTags", {
 });
 
 export const RentalRequests = pgTable("rentalRequests", {
-  id: uuid("id").primaryKey(),
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
   serviceId: uuid("service_id").references(() => Services.id),
   renterId: uuid("renter_id").references(() => Users.id),
   requestDate: timestamp("request_date", {

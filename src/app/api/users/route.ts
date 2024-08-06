@@ -1,84 +1,104 @@
-import { db } from "@/db/db";
-import { Address } from "@/db/schema";
-import type { NextApiRequest, NextApiResponse } from "next";
-import { z } from "zod";
+import { db } from "@/lib/db/db";
+import { Users } from "@/lib/db/schema";
+import { UserSchema } from "@/lib/schemas/users/Users.schema";
+import { eq } from "drizzle-orm";
+import { NextApiRequest, NextApiResponse } from "next";
+import { string } from "zod";
 
-// Define the schemas for user and address
-const userSchema = z.object({
-  name: z.string().max(100),
-  email: z.string().email().max(150),
-  password_hash: z.string().max(255), // Hash the password on the server
-  phone: z.string().max(20).optional(),
-  role: z.enum(["provider", "renter", "admin"]),
-  profile_picture_url: z.string().max(255).optional(),
-});
+export async function POST(request: Request, response: NextApiResponse) {
+  const fromData = await request.formData();
 
-const addressSchema = z.object({
-  address_line1: z.string().max(255),
-  address_line2: z.string().max(255).optional(),
-  city: z.string().max(100),
-  state: z.string().max(100),
-  country: z.string().max(100),
-  postal_code: z.string().max(20),
-});
+  const validatedUser = UserSchema.parse({
+    id: fromData.get("id"), // they will create a problem because user id is auto genearted
+    firstName: fromData.get("firstName"),
+    lastName: fromData.get("lastName"),
+    email: fromData.get("email"),
+    password: fromData.get("password"),
+    addressId: fromData.get("addressId"),
+    role: fromData.get("role"),
+    profilePictureUrl: fromData.get("profilePicture"),
+    phone: fromData.get("phone"),
+  });
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "POST") {
-    try {
-      // Validate and parse user and address data
-      const userResult = userSchema.safeParse(req.body.user);
-      const addressResult = addressSchema.safeParse(req.body.address);
-
-      if (!userResult.success || !addressResult.success) {
-        return res.status(400).json({
-          message: "Invalid data",
-          errors: {
-            userErrors: userResult.error ? userResult.error.errors : [], // Handle error safely
-            addressErrors: addressResult.error
-              ? addressResult.error.errors
-              : [], // Handle error safely
-          },
-        });
-      }
-
-      // Insert the address into Supabase
-      const { data: addressData, error: addressError } = await db
-        .insert(Address)
-        .values(addressResult.data)
-        .single(); // Use `.single()` to return a single row
-
-      if (addressError) {
-        console.error("Error inserting address:", addressError);
-        return res.status(500).json({
-          message: "Error inserting address",
-          error: addressError.message,
-        });
-      }
-
-      // Insert the user into Supabase with the address_id
-      const { data: userData, error: userError } = await db
-        .from("Users")
-        .insert({ ...userResult.data, address_id: addressData.id })
-        .single();
-
-      if (userError) {
-        console.error("Error inserting user:", userError);
-        return res
-          .status(500)
-          .json({ message: "Error inserting user", error: userError.message });
-      }
-
-      // Respond with the created user
-      res.status(201).json(userData);
-    } catch (error) {
-      console.error("Error creating user and address:", error);
-      res.status(500).json({ message: "Server error" });
-    }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+  // const validatedUser = UserSchema.parse(fromData.getAll);
+  try {
+    const createUser = await db.insert(Users).values(validatedUser);
+    return response.status(201).json(createUser);
+  } catch (error) {
+    return response.status(400).json({ error: error });
   }
 }
+
+export async function GET(request: NextApiRequest, response: NextApiResponse) {
+  const { email } = request.query;
+
+  try {
+    const user = await db.select().from(Users).where(eq(Users.email, "email"));
+    if (user) {
+      response.status(200).json(user);
+    } else {
+      response.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    return new Response(`somthing is wrong with User database ${error}`, {
+      status: 500,
+    });
+  }
+}
+
+// import { NextApiRequest, NextApiResponse } from "next";
+
+// import { db } from "@/db/db";
+// import { Users } from "@/db/schema";
+// import { UserSchema } from "@/lib/schemas/users/Users.schema";
+
+// // POST /api/user - Create a new user
+// export async function POST(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     const data = await req;
+//     const parsedBody = UserSchema.parse(JSON.parse(req.body));
+//     res.status(201).json(parsedBody);
+//   } catch (error) {
+//     res.status(400).json({ error: error.errors });
+//   }
+// }
+
+// // GET /api/user - Get a user by email
+// export async function GET(req: NextApiRequest, res: NextApiResponse) {
+//   const { email } = req.query;
+//   if (typeof email === "string") {
+//     const user = await db.select("users").where({ email }).first();
+//     if (user) {
+//       res.status(200).json(user);
+//     } else {
+//       res.status(404).json({ error: "User not found" });
+//     }
+//   } else {
+//     res.status(400).json({ error: "Invalid email" });
+//   }
+// }
+
+// // PUT /api/user - Update a user by email
+// export async function PUT(req: NextApiRequest, res: NextApiResponse) {
+//   try {
+//     const { email } = req.query;
+//     if (typeof email !== "string") {
+//       return res.status(400).json({ error: "Invalid email" });
+//     }
+
+//     const parsedBody = Users.parse(JSON.parse(req.body));
+//     if (email !== parsedBody.email) {
+//       return res
+//         .status(400)
+//         .json({ error: "Email in body does not match query email" });
+//     }
+
+//     await db.update("users").set(parsedBody).where({ email });
+//     res.status(200).json(parsedBody);
+//   } catch (error) {
+//     res.status(400).json({ error: error.errors });
+//   }
+// }
+
+// this is our post request don't need to destribe
+// Zod.pars

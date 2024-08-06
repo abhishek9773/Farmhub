@@ -5,64 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1722747638596,
-      "tag": "0000_ordinary_xavin",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1722750974549,
-      "tag": "0001_cuddly_doctor_spectrum",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1722757085952,
-      "tag": "0002_dry_franklin_storm",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1722758673606,
-      "tag": "0003_closed_jazinda",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1722762091482,
-      "tag": "0004_worried_war_machine",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1722762462839,
-      "tag": "0005_real_shadowcat",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1722764513065,
-      "tag": "0006_swift_mad_thinker",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1722769023911,
-      "tag": "0007_medical_may_parker",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1722817046954,
-      "tag": "0008_safe_goliath",
+      "when": 1722916677715,
+      "tag": "0000_mixed_the_enforcers",
       "breakpoints": true
     }
   ]
