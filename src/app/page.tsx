@@ -12,7 +12,7 @@ import { Dropdown } from "./_component/_utils/DropDown";
 
 const page = async () => {
   return (
-    <div className="container-x overflow-x-hidden bg-lime-200 mx-1">
+    <div className=" relative container-x overflow-x-hidden overflow-hidden bg-lime-200 mx-1">
       <Navbar />
       <Carosal />
       <Hero />

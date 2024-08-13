@@ -88,6 +88,6 @@ export const serviceData: Service[] = [
       "Support for new businesses and entrepreneurs in the farming sector, including business development resources, mentorship, and access to funding.",
     offerings: ["Business Development", "Mentorship", "Funding", "Networking"],
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVxXfC6NU6t9ob2zjkLdlL0wJzaLXbkn5yyw&s", // Replace with the actual path or URL to the image
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA6J1oVqNVBjQDHsB3h_2zaEU8WORPfKimg-A_0N7en9-38R8-442QrD_kF3RrQ3mU99c&usqp=CAU", // Replace with the actual path or URL to the image
   },
 ];

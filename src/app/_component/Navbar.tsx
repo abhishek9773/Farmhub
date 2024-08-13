@@ -17,7 +17,7 @@ const Navbar = async () => {
 
   return (
     <div>
-      <div className=" fixed top-0  z-50 flex justify-between items-center  shadow-sm pt-4 pb-2 p-2 w-full  bg-white">
+      <div className=" fixed top-0  z-50 flex justify-between items-center bg-lime-300/60   shadow-sm pt-4 pb-2 p-2 w-full ">
         <h1 className="font-bold text-2xl sm:tex-3xl block">
           Farm<span className="text-red-500">H</span>ub
         </h1>
