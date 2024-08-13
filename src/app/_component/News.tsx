@@ -49,27 +49,6 @@ const topChannel = [
       "https://yt3.googleusercontent.com/14HO-rzYU6i9Fdx-GfAcPdhmWTyC2TKJk-9QJhKDm5DalB1HE_O4TeEe3u0HnpkhaqxWsMckLA=s160-c-k-c0x00ffffff-no-rj",
     subscribe: "681K subscribers",
   },
-  {
-    name: "Indian Farmer",
-    channel_id: "@IndianFarmer",
-    image:
-      "https://yt3.googleusercontent.com/sPyMu2b03noMiSuQLWgemrZqov9SNA0gpRabNZ8hDxGybKuh7RgBVLgVVR5v2le0EVDsCQQu=s160-c-k-c0x00ffffff-no-rj",
-    subscribe: "4.54M subscribers",
-  },
-  {
-    name: "Indian Farmer",
-    channel_id: "@IndianFarmer",
-    image:
-      "https://yt3.googleusercontent.com/sPyMu2b03noMiSuQLWgemrZqov9SNA0gpRabNZ8hDxGybKuh7RgBVLgVVR5v2le0EVDsCQQu=s160-c-k-c0x00ffffff-no-rj",
-    subscribe: "4.54M subscribers",
-  },
-  {
-    name: "Indian Farmer",
-    channel_id: "@IndianFarmer",
-    image:
-      "https://yt3.googleusercontent.com/sPyMu2b03noMiSuQLWgemrZqov9SNA0gpRabNZ8hDxGybKuh7RgBVLgVVR5v2le0EVDsCQQu=s160-c-k-c0x00ffffff-no-rj",
-    subscribe: "4.54M subscribers",
-  },
 ];
 
 const News = () => {
@@ -107,7 +86,7 @@ const News = () => {
                   {" "}
                   <div
                     key={channel.name}
-                    className="flex justify-center  gap-5  items-center m-2 py-8 bg-slate-200 rounded   w-[400px]"
+                    className="flex justify-center  gap-5  items-center m-2 py-8 bg-lime-50 rounded   w-[400px]"
                   >
                     <div>
                       {" "}
