@@ -1,6 +1,6 @@
 import { db } from "@/lib/db/db";
 import { Users } from "@/lib/db/schema";
-import { UserSchema } from "@/lib/schemas/users/Users.schema";
+import { UserSchema } from "@/lib/zod_schema/users/Users.schema";
 import { eq } from "drizzle-orm";
 import { NextApiRequest, NextApiResponse } from "next";
 import { string } from "zod";

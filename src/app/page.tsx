@@ -15,7 +15,7 @@ import { redirect } from "next/navigation";
 
 const page = async () => {
   return (
-    <div className="container-x overflow-x-hidden">
+    <div className="container-x overflow-x-hidden bg-lime-100 mx-1">
       <Navbar />
       <Carosal />
       <Hero />

@@ -31,9 +31,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ProductCheckbox } from "./_component/ProductCheckbox";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Machinery } from "./_component/data/FarmingData";
 
 export default function DashboardPage() {
   return (
@@ -58,7 +55,7 @@ export default function DashboardPage() {
               >
                 Farm Machinery
               </Link>
-              <div className=" w-[250px] lg:w-[350px] ">
+              {/* <div className=" w-[250px] lg:w-[350px] ">
                 <div className="grid grid-cols-2 gap-2 ">
                   {Machinery.map((items) => (
                     <div id={items.id.toString()} className="flex gap-2">
@@ -68,7 +65,7 @@ export default function DashboardPage() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
               <Link
                 href="#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
