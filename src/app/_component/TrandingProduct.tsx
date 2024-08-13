@@ -4,7 +4,7 @@ import { Equipment, productData } from "@/data/ProductData";
 
 const TrendingProduct = () => {
   return (
-    <div className="py-2">
+    <div className="pt-2 pb-1">
       <div>
         <p className="font-bold text-2xl text-center">
           Trending Product of This Week

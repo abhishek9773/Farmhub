@@ -12,7 +12,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
       {equipment.map((item: Equipment) => (
         <div
           key={item.id}
-          className="bg-slate-200 rounded-md shadow-sm h-[180px] flex "
+          className="bg-lime-50/60 rounded-md shadow-sm h-[180px] flex "
         >
           {/* Image Section */}
           <div className="flex-shrink-0">

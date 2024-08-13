@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="my-2 shadow-orange-300 shadow-2xl">
-      <footer className="bg-white dark:bg-gray-900   ">
+    <div className="my-2  shadow-2xl">
+      <footer className="bg-lime-300 dark:bg-gray-900   ">
         <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
           <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
             <div className="mx-auto max-w-sm lg:max-w-none">
