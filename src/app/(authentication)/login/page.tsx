@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { LoginWithGoogle, login, signup } from "./actions";
 import { FaGoogle } from "react-icons/fa";
 import { MdMobileFriendly } from "react-icons/md";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -71,14 +70,14 @@ export default function LoginPage() {
             <button
               type="button"
               className="bg-black w-full text-white py-3 px-1 my-2 rounded hover:opacity-80"
-              formAction={login}
+              // formAction={login}
             >
               Log in
             </button>
             <button
               type="button"
               className="bg-black w-full text-white py-3 px-1 my-2 rounded hover:opacity-80"
-              formAction={signup}
+              // formAction={signup}
             >
               Sign up
             </button>
@@ -93,7 +92,7 @@ export default function LoginPage() {
         </Link>
         <p className="text-center">or</p>
         <button
-          onClick={() => LoginWithGoogle()}
+          // onClick={() => LoginWithGoogle()}
           className="flex gap-5 justify-center bg-black text-white p-3 my-1 rounded font-normal hover:opacity-60"
         >
           <FaGoogle className="text-2xl" />

@@ -7,7 +7,10 @@ const Carosal = () => {
     <div className="hidden md:block w-auto h-[130px] shadow bg-lime-50 py-1 ">
       <div className="flex gap-8 ">
         {carosalData.map((items) => (
-          <div className="relative w-[120px] h-[120px] rounded-full overflow-hidden">
+          <div
+            key={items.id}
+            className="relative w-[120px] h-[120px] rounded-full overflow-hidden"
+          >
             <Image
               src={items.image}
               alt={items.image}
