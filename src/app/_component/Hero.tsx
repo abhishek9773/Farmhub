@@ -11,7 +11,7 @@ const textFont = Poppins({
 
 const Hero = () => {
   return (
-    <div className="flex items-center justify-center flex-col bg-amber-400 my-1 shadow-md w-screen md:w-[100%] h-screen md:h-[100%] md:py-10 ">
+    <div className="flex items-center justify-center flex-col bg-lime-600 my-1 shadow-md w-screen md:w-[100%] h-screen md:h-[100%] md:py-10 ">
       <div className="flex items-center justify-center flex-col ">
         <div className=" flex items-center border shadow-sm  p-4 bg-amber-200 text-amber-700 rounded-full uppercase sm:text-center text-center">
           <Medal className="h-6 w-6 mr-2" />
@@ -35,12 +35,18 @@ const Hero = () => {
           effortlessly.
         </div>
         <div className="flex gap-4 sm:gap-10 md:gap-20 items-center justify-center">
-          <Button className="mt-6 text-md font-normal " size={"lg"}>
+          <Button
+            className="mt-6 text-md font-normal bg-lime-400 text-black hover:bg-lime-300"
+            size={"lg"}
+          >
             <Link href="/sign-up">
               <span className="text-lg">+</span> List for Rent
             </Link>
           </Button>
-          <Button className="mt-6 text-md font-normal" size={"lg"}>
+          <Button
+            className="mt-6 text-md font-normal bg-lime-400 text-black hover:bg-lime-300"
+            size={"lg"}
+          >
             Request Rental
           </Button>
         </div>

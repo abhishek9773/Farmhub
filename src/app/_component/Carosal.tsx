@@ -4,7 +4,7 @@ import React from "react";
 
 const Carosal = () => {
   return (
-    <div className="hidden md:block w-auto h-[130px] shadow bg-lime-50 py-1 ">
+    <div className="hidden md:block w-auto h-[130px] shadow bg-lime-200 py-1 ">
       <div className="flex gap-8 ">
         {carosalData.map((items) => (
           <div

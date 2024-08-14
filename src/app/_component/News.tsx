@@ -126,7 +126,7 @@ const News = () => {
           {youtubeVideoId.map((items) => (
             <div key={items.id} className="m-1   rounded-md ">
               <iframe
-                className="w-full h-60"
+                className="w-full h-60 bg-lime-100"
                 src={`https://www.youtube.com/embed/${items.yid}`}
                 title="YouTube video player"
                 frameBorder="0"

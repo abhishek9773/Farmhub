@@ -195,7 +195,7 @@ const TrustedBy = () => {
                   rounded-xl
                   dark:bg-gradient-to-t
                   dark:from-border dark:to-background
-                  bg-slate-50
+                  bg-lime-100
                 "
                 cardHeader={
                   <div
