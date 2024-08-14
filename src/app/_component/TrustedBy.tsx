@@ -144,25 +144,11 @@ const TrustedBy = () => {
   return (
     <div className="">
       <div
-        className="w-full
-        bg-gray-300
-          blur-[120px]
-          rounded-full
-          h-32
-          absolute
-          bg-brand-primaryPurple/50
-          -z-100
-          top-56
+        className="w-full bg-gray-300 blur-[120px] rounded-full h-24 md:h-32  absolute bg-brand-primaryPurple/50 -z-100 top-56
         "
       />
       <div
-        className="mt-20
-          px-4
-          sm:px-6 
-          flex
-          flex-col
-          overflow-x-hidden
-          overflow-visible
+        className="mt-20  px-4 sm:px-6  flex  flex-col  overflow-x-hidden overflow-visible
         "
       >
         <div>
@@ -190,7 +176,7 @@ const TrustedBy = () => {
             {USERS.map((testimonial, index) => (
               <CustomCard
                 key={testimonial.name}
-                className="w-[500px]
+                className=" w-[260px] md:w-[500px]
                   shrink-0s
                   rounded-xl
                   dark:bg-gradient-to-t

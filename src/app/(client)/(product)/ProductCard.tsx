@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
       {equipment.map((item: Equipment) => (
         <div
           key={item.id}
-          className="bg-lime-50/60 rounded-md shadow-sm h-[180px] flex "
+          className="bg-lime-50/60 rounded-md shadow-sm h-auto md:h-[180px]  flex "
         >
           {/* Image Section */}
           <div className="flex-shrink-0">
@@ -21,9 +21,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
               <Image
                 src={item.image_url}
                 alt={item.name}
-                layout="fill" // Use fill to cover the container
-                objectFit="cover" // Ensure the image covers the container area
-                className="rounded-l-md" // Apply your rounded corners style
+                layout="fill"
+                objectFit="cover"
+                className="rounded-l-md"
               />
             </div>
           </div>
@@ -37,7 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
                 {item.category}
               </div>
             </div>
-            <div className="flex gap-4 items-center justify-between ">
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-between  ">
               <div className="mt-1 text-lg font-bold">
                 ${item.price.toFixed(2)}
               </div>
