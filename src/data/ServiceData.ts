@@ -70,7 +70,7 @@ export const serviceData: Service[] = [
       "Financial products and services tailored to the needs of farmers, including insurance options and financing solutions for operations and equipment.",
     offerings: ["Insurance", "Financing"],
     image:
-      "https://www.bankofbaroda.in/-/media/project/bob/countrywebsites/india/business-banking/rural-and-agri/loans-and-advances/agricultural-finance/farm-credit/farm-mechanization/new-scheme-for-tractor/spotlight/new-scheme-for-tractor-spotlightbanner.jpg?h=400&iar=0&w=1080&hash=F9D3635C8DDA2C902D8682ACFE001807", // Replace with the actual path or URL to the image
+      "https://media.istockphoto.com/id/1221679843/photo/money-is-born-soil-in-the-bottom-of-the-plantations-agribusiness-profit-land-value.jpg?s=612x612&w=0&k=20&c=WV3LiD_10a5HS-NgKKfMtrDm42GbJ14BwBTkyqwlK_Q=",
   },
   {
     id: 10,

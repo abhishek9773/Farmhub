@@ -5,12 +5,13 @@ import Link from "next/link";
 import React from "react";
 
 const youtubeVideoId = [
-  { yid: "2dEnYffO53g" },
+  { id: "1", yid: "2dEnYffO53g" },
   {
+    id: "2",
     yid: "_qIKDoQcmYk",
   },
-  { yid: "slPgqZRrGyE" },
-  { yid: "ry9rnbsm_zc" },
+  { id: "3", yid: "slPgqZRrGyE" },
+  { id: "4", yid: "ry9rnbsm_zc" },
 ];
 
 // type topChannelType=[
@@ -82,7 +83,10 @@ const News = () => {
             >
               {" "}
               {topChannel.map((channel) => (
-                <Link href={`https://www.youtube.com/${channel.channel_id}`}>
+                <Link
+                  key={channel.channel_id}
+                  href={`https://www.youtube.com/${channel.channel_id}`}
+                >
                   {" "}
                   <div
                     key={channel.name}
@@ -120,7 +124,7 @@ const News = () => {
         <div className="font-bold m-2 text-center text-2xl">Farming Idea</div>
         <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           {youtubeVideoId.map((items) => (
-            <div className="m-1   rounded-md ">
+            <div key={items.id} className="m-1   rounded-md ">
               <iframe
                 className="w-full h-60"
                 src={`https://www.youtube.com/embed/${items.yid}`}

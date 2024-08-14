@@ -1,5 +1,6 @@
 import React from "react";
 import { Service, ServiceArray } from "../../../data/ServiceData";
+import Image from "next/image";
 
 interface ServiceProps {
   service: ServiceArray;
@@ -13,11 +14,15 @@ const ServiceCard: React.FC<ServiceProps> = ({ service }) => {
           key={items.id}
           className="bg-lime-50 h-[380px] rounded-md flex flex-col"
         >
-          <img
-            src={items.image}
-            alt={items.sector}
-            className="w-full h-48 object-cover rounded-t-sm mb-1"
-          />
+          <div className="relative w-full h-48 mb-1 rounded-t-sm overflow-hidden">
+            <Image
+              src={items.image}
+              alt={items.sector}
+              layout="fill"
+              objectFit="cover" // Ensures the image covers the container area
+              className="rounded-t-sm" // Apply rounded corners to the container
+            />
+          </div>
           <div className="flex flex-col flex-grow p-4">
             <h1 className="text-xl font-bold text-center mb-2">
               {items.sector}

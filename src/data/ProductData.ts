@@ -64,7 +64,7 @@ export const productData: Equipment[] = [
     availability: "Supply",
     rating: 4.4,
     image_url:
-      "https://lh3.googleusercontent.com/proxy/vysB4ROvAiVX9chphocdYMu2-08qKnQSDO5wrEqVRAho-KMPpdu5p8QX69PIZPD6CTCnEkYr5ChPhApdvoIOGGqFyN0CtsVfG9c2",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2MCQ_sh_NPuTYn1ITnKHEi8NXt-ewcIdiurM1KL-VkWJhSuL_SGFWfIhVrD_99-gMA3w&usqp=CAU",
   },
   {
     id: 6,

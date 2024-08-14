@@ -1,6 +1,7 @@
 import React from "react";
 import StarRating from "./StarRating";
 import { Equipment, EquipmentArray } from "@/data/ProductData";
+import Image from "next/image";
 
 interface ProductCardProps {
   equipment: EquipmentArray;
@@ -8,7 +9,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 ">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 my-6 ">
       {equipment.map((item: Equipment) => (
         <div
           key={item.id}
@@ -16,11 +17,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ equipment }) => {
         >
           {/* Image Section */}
           <div className="flex-shrink-0">
-            <img
-              src={item.image_url}
-              alt={item.name}
-              className="object-cover w-[200px] h-full rounded-l-md"
-            />
+            <div className="relative w-[200px] h-full">
+              <Image
+                src={item.image_url}
+                alt={item.name}
+                layout="fill" // Use fill to cover the container
+                objectFit="cover" // Ensure the image covers the container area
+                className="rounded-l-md" // Apply your rounded corners style
+              />
+            </div>
           </div>
           {/* Details Section */}
           <div className="flex-1 px-4  py-2   flex flex-col h-full overflow-hidden justify-between">

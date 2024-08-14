@@ -167,12 +167,11 @@ const TrustedBy = () => {
       >
         <div>
           <p className="text-3xl font-bold text-center">Trusted by all</p>
-          <p>
-            {" "}
+          <p className="">
             Join thousands of satisfied users who rely on our platform for their
-            agricultural needs. Whether you're a farmer looking for essential
-            resources or a business seeking to connect with local farming
-            communities,
+            agricultural needs. Whether you&apos;re a farmer looking for
+            essential resources or a business seeking to connect with local
+            farming communities,
           </p>
         </div>
         {[...Array(2)].map((arr, index) => (
