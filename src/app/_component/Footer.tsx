@@ -263,14 +263,14 @@ const Footer = () => {
                 href="#"
                 className="text-gray-700 underline transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
               >
-                Laravel
+                sepzor
               </a>
               and
               <a
                 href="#"
                 className="text-gray-700 underline transition hover:text-gray-700/75 dark:text-white dark:hover:text-white/75"
               >
-                Laravel Livewire
+                FrameHub
               </a>
               .
             </p>
